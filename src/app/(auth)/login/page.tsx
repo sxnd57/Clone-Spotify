@@ -13,8 +13,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
+import brandImageDark from "assets/images/sxnd-dark.png";
+import brandImageLight from "assets/images/sxnd-light.png";
+import Link from "next/link";
+import ModeSwitch from "@/components/theme-switch-mode";
+import { Github } from "lucide-react";
 const formSchema = z
   .object({
     username: z.string().min(2, {
@@ -41,7 +46,7 @@ export default function LoginPage() {
   }
   return (
     <div className="flex h-full items-center justify-center">
-      <Card className="border-none shadow-none mx-5 w-full px-7 sm:w-1/2 md:mx-6 md:w-1/4 md:px-6">
+      <Card className="mx-5 w-full border-none px-7 shadow-none sm:w-1/2 md:mx-6 md:w-1/4 md:px-6">
         <CardHeader>
           <CardTitle className="text-center text-[2rem] font-bold">
             Login in to SXND
@@ -84,7 +89,6 @@ export default function LoginPage() {
             </Button>
           </form>
         </Form>
-        <CardContent></CardContent>
       </Card>
     </div>
   );
