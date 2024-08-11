@@ -82,4 +82,8 @@
   .text-active{
     color: var(--text-active);
   }
+
+  .scrollbar-thin{
+    scrollbar-width: thin;
+  }
 }
