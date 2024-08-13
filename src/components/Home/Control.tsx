@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { ProgressBar } from "./ProgressBar";
-import SongCardList from "../SongCardList";
+import SongCardList from "./SongCardList";
 import ControlCenter from "./ControlCenter";
 import ControlRight from "./ControlRight";
 

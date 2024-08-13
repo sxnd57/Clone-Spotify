@@ -18,7 +18,7 @@ export default function PopoverDemo() {
     typeLayouts: null,
   });
 
-  const handleActive = (listName:string, index) => {
+  const handleActive = (listName:any, index:number) => {
     setActiveIndices((prevIndices) => ({
       ...prevIndices,
       [listName]: prevIndices[listName] === index ? null : index,

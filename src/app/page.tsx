@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { zing } from "zingmp3-api-next";
 
 export default function Home() {
-  zing.get_home().then((data) => console.log(data));
+  
   return (
     <div className="grid h-screen w-full grid-flow-col grid-rows-12 gap-2 p-2 dark:bg-black md:grid-cols-12">
       <div className="col-span-3 row-span-2">

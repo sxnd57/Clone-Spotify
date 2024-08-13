@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import PopverRecent from "./PopverRecent";
-import SongCardList from "../SongCardList";
+import SongCardList from "./SongCardList";
 
 export default function Library() {
   const favorite = [
