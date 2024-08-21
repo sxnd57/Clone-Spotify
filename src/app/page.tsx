@@ -11,22 +11,19 @@ import dynamic from "next/dynamic";
 
 export default function Home() {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleBeforeUnload = (e: any) => {
-        const confirmationMessage = "Do you really want to reload the page?";
-        e.preventDefault();
-        e.returnValue = confirmationMessage;
-        return confirmationMessage;
-      };
+    const handleBeforeUnload = (e: any) => {
+      const confirmationMessage = "Do you really want to reload the page?";
+      e.preventDefault();
+      e.returnValue = confirmationMessage;
+      return confirmationMessage;
+    };
 
-      window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
-      return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-      };
-    }
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
-
   return (
     <div className={`h-screen`}>
       <div className="flex justify-between border-b">
