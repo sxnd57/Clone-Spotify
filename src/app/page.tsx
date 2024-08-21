@@ -3,26 +3,30 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/Home/Sidebar";
 import HeaderMenu from "@/components/Home/HeaderMenu";
 import Avatar from "@/components/Home/Avatar";
-import ControlCenter from "@/components/Home/ControlCenter";
+const ControlCenter = dynamic(() => import("@/components/Home/ControlCenter"), { ssr: false });
 import { Tabs, TabsTrigger, TabsList } from "@/components/ui/tabs";
 import MusicTab from "@/components/Home/MusicTab";
 import PodcastsTab from "@/components/Home/PodcastsTab";
+import dynamic from "next/dynamic";
 
 export default function Home() {
   useEffect(() => {
-    const handleBeforeUnload = (e:any) => {
-      const confirmationMessage = 'Do you really want to reload the page?';
-      e.preventDefault();
-      e.returnValue = confirmationMessage;
-      return confirmationMessage;
-    };
+    if (typeof window !== "undefined") {
+      const handleBeforeUnload = (e: any) => {
+        const confirmationMessage = "Do you really want to reload the page?";
+        e.preventDefault();
+        e.returnValue = confirmationMessage;
+        return confirmationMessage;
+      };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+      window.addEventListener("beforeunload", handleBeforeUnload);
 
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
+      return () => {
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+      };
+    }
   }, []);
+
   return (
     <div className={`h-screen`}>
       <div className="flex justify-between border-b">
@@ -52,7 +56,7 @@ export default function Home() {
                 <PodcastsTab />
               </Tabs>
             </div>
-            <ControlCenter/>
+            <ControlCenter />
           </div>
         </div>
       </div>
