@@ -10,8 +10,6 @@ import {
 import Image from "next/image";
 import logoDark from "assets/images/sxnd-dark.png";
 import React from "react";
-import Link from "next/link";
-import { Button } from "../ui/button";
 import logoLight from "assets/images/sxnd-light.png";
 
 function Avatar() {
@@ -31,12 +29,6 @@ function Avatar() {
           <MenubarItem>Sign out</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
-      {/*<Link href={`/login`}>*/}
-      {/*  <Button>Sign in</Button>*/}
-      {/*</Link>*/}
-      {/*<Link href={`/register`}>*/}
-      {/*  <Button>Sign up</Button>*/}
-      {/*</Link>*/}
     </Menubar>
   );
 }

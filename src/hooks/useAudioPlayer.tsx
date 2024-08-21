@@ -1,22 +1,21 @@
+"use client"
 import { Volume, Volume1, Volume2, VolumeX } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 function useAudioPlayer(songs: any) {
   const [playing, setPlaying] = useState(false);
-  const storage = {
-    volumeStore: localStorage.getItem("volume"),
-    songIndexStore: localStorage.getItem("songIndex"),
-    currentTimeStore: localStorage.getItem("currentTime"),
-  };
+  const volumeStore =  localStorage.getItem("volume");
+  const songIndexStore = localStorage.getItem("songIndex")
+  const currentTimeStore = localStorage.getItem("currentTime")
   const [volume, setVolume] = useState(
-    storage.volumeStore ? Number(storage.volumeStore) : 0.5,
+    volumeStore ? Number(volumeStore) : 0.5,
   );
   const [currentSongIndex, setCurrentSongIndex] = useState(
-    storage.songIndexStore ? Number(storage.songIndexStore) : 0,
+    songIndexStore ? Number(songIndexStore) : 0,
   );
   const audioRef = useRef(new Audio(songs[currentSongIndex].songURL));
   const [currentTime, setCurrentTime] = useState(
-    storage.currentTimeStore ? Number(storage.currentTimeStore) : 0,
+    currentTimeStore ? Number(currentTimeStore) : 0,
   );
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -29,19 +28,19 @@ function useAudioPlayer(songs: any) {
     audioRef.current.onloadedmetadata = () => {
       setDuration(audioRef.current.duration);
       if (
-        storage.currentTimeStore &&
-        currentSongIndex === Number(storage.songIndexStore)
+        currentTimeStore &&
+        currentSongIndex === Number(songIndexStore)
       ) {
-        audioRef.current.currentTime = Number(storage.currentTimeStore);
-        setCurrentTime(Number(storage.currentTimeStore));
+        audioRef.current.currentTime = Number(currentTimeStore);
+        setCurrentTime(Number(currentTimeStore));
       } else {
         audioRef.current.currentTime = 0;
         setCurrentTime(0);
         setProgress(0);
       }
 
-      if (storage.volumeStore) {
-        audioRef.current.volume = Number(storage.volumeStore);
+      if (volumeStore) {
+        audioRef.current.volume = Number(volumeStore);
       } else {
         setVolume(50);
       }
@@ -119,9 +118,9 @@ function useAudioPlayer(songs: any) {
       return <Volume2 />;
     } else if (volume <= 0.8 && volume > 0.3) {
       return <Volume1 />;
-    } else if (volume > 0.05) {
+    } else if (volume >= 0.01) {
       return <Volume />;
-    } else if (volume <= 0.05) {
+    } else{
       return <VolumeX />;
     }
   }

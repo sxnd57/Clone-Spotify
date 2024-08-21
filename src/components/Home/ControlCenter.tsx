@@ -84,7 +84,7 @@ function ControlCenter() {
               {volumeIconState()}
               <Seekbar
                 defaultValue={[0.5]}
-                step={0.05}
+                step={0.01}
                 max={1}
                 onValueChange={(vals) => updateVolume(vals)}
                 value={[volume]}
