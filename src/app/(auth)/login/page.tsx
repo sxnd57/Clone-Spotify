@@ -14,12 +14,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
-import brandImageDark from "assets/images/sxnd-dark.png";
-import brandImageLight from "assets/images/sxnd-light.png";
-import Link from "next/link";
-import ModeSwitch from "@/components/theme-switch-mode";
-import { Github } from "lucide-react";
 const formSchema = z
   .object({
     username: z.string().min(2, {

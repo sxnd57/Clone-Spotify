@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "1000 ánh mắt",
+    "artist": "Shiki",
+    "songURL": "/music/music1.mp3",
+    "thumbnail": "https://i.ytimg.com/vi/FrKHM7Yie8k/maxresdefault.jpg"
+  },
+  {
+    "id": 2,
+    "name": "a b c d x y z n m a s a d (song 24)",
+    "artist":  "W/n",
+    "songURL": "/music/music2.mp3",
+    "thumbnail": "https://i.ytimg.com/vi/rDpJfmBI9xQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCtCKrLTNHSMrr92kuL1VnezJPsaA"
+  },
+  {
+    "id": 3,
+    "name": "Wrong times",
+    "artist":  "Puppy & Dangrangto",
+    "songURL": "/music/music3.mp3",
+    "thumbnail": "https://i.ytimg.com/vi/W4UeUJA9wLU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBisSWYEpMexauDMEEzwUPLeiB1Hw"
+  },
+  {
+    "id": 4,
+    "name": "Miền mộng mị",
+    "artist":  "Amee",
+    "songURL": "/music/music4.mp3",
+    "thumbnail": "https://image.theinfluencer.vn/files/2024/8/imgs/1723514386741.jpg??"
+  },
+  {
+    "id": 5,
+    "name": "Sẽ ổn thôi",
+    "artist":  "Khải",
+    "songURL": "/music/music5.mp3",
+    "thumbnail": "https://i.ytimg.com/vi/TyZasCMDf5M/sddefault.jpg?v=6653ed59"
+  },
+  {
+    "id": 6,
+    "name": "Sẽ là",
+    "artist":  "BẠN CÓ TÀI MÀ",
+    "songURL": "/music/music6.mp3",
+    "thumbnail": "https://i.ytimg.com/vi/6fDEKfccH_A/maxresdefault.jpg"
+  },
+  {
+    "id": 7,
+    "name": "10 ngàn năm",
+    "artist":  "PC",
+    "songURL": "/music/music7.mp3",
+    "thumbnail": "https://i.ytimg.com/vi/2-zSSzg8i3Y/maxresdefault.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Hãy gặp em trước khi em 25",
+    "artist":  "O.lew",
+    "songURL": "/music/music8.mp3",
+    "thumbnail": "https://i.ytimg.com/vi/wgzT37cWxNY/maxresdefault.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Mẹ anh thường nhắc về em",
+    "artist":  "Freaky",
+    "songURL": "/music/music9.mp3",
+    "thumbnail": "https://i.ytimg.com/vi/uB_GjzFU-_w/maxresdefault.jpg"
+  }
+]

@@ -8,7 +8,7 @@ export default function ModeSwitch() {
   const { setTheme } = useTheme();
   const [activeTheme, setActiveTheme] = useState("system");
 
-  const handleThemeChange = (theme) => {
+  const handleThemeChange = (theme:any) => {
     setTheme(theme);
     setActiveTheme(theme);
   };
