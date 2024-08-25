@@ -33,7 +33,6 @@ function MusicTab() {
         </p>
       </div>
       <div className="flex space-x-4 py-3">
-        <div className=""></div>
         {songs.map((song) => {
           return (
             <div className="w-56 space-y-3" key={song.id}>
@@ -50,7 +49,7 @@ function MusicTab() {
                       className="aspect-square w-full object-cover rounded-xl"
                     />
                     <button
-                      className="absolute inset-1/2 translate-y-full transform rounded-full bg-green-500 p-2 text-white opacity-0 transition-transform duration-500 ease-in-out hover:bg-green-600 group-hover:translate-y-0 group-hover:opacity-100">
+                      className="absolute bottom-3 right-3 translate-y-full transform rounded-full bg-green-500 p-2 text-white opacity-0 transition-transform duration-500 ease-in-out hover:bg-green-600 group-hover:translate-y-0 group-hover:opacity-100">
                       <Play size={18} />
                     </button>
                   </div>
