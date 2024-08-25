@@ -1,36 +1,56 @@
+import { LogOut, Settings, User } from "lucide-react";
 import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import logoDark from "assets/images/sxnd-dark.png";
-import React from "react";
-import logoLight from "assets/images/sxnd-light.png";
+import avatar from "assets/images/avatar.jpg";
 
-function Avatar() {
+export default function Avatar() {
   return (
-    <Menubar className={`border-0 mr-4`}>
-      <MenubarMenu>
-        <MenubarTrigger className={`rounded-full p-0`}>
-          <Image className={`p-0 block dark:hidden`} width={40} src={logoDark} alt={"logoDark"} />
-          <Image className={`p-0 hidden dark:block`} width={40} src={logoLight} alt={"logoLight"} />
-        </MenubarTrigger>
-        <MenubarContent>
-          <MenubarItem>Your Account</MenubarItem>
-          <MenubarItem>Profile</MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem>Upgrade to premium</MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem>Sign out</MenubarItem>
-        </MenubarContent>
-      </MenubarMenu>
-    </Menubar>
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        asChild
+        className={`h-[48px] w-[48px] cursor-pointer rounded-full border-8 dark:border-neutral-500/20 border-neutral-200`}
+      >
+        <Image
+          className={`object-cover`}
+          width={1920}
+          height={1080}
+          quality={100}
+          src={avatar}
+          alt={`avatar`}
+        />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56 dark:bg-primary">
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <User className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Settings</span>
+            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <LogOut className="mr-2 h-4 w-4" />
+          <span>Log out</span>
+          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
-
-export default Avatar;

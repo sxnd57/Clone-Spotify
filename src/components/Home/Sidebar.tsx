@@ -15,7 +15,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Sidebar = () => {
   return (
-    <div className="space-y-2">
+    <div className="">
       <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
         Discover
       </h2>
@@ -50,38 +50,62 @@ const Sidebar = () => {
       <Section name={"Albums"}>
         <Album className={`mr-4`} />
       </Section>
-
       <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
         Playlists
       </h2>
-      <ScrollArea className="h-[300px]">
-        <div className="flex-1 space-y-2">
-          <Section name={"Playlist"}>
-            <ListMusic className={`mr-4`} />
-          </Section>
-          <Section name={"Playlist"}>
-            <ListMusic className={`mr-4`} />
-          </Section>
-          <Section name={"Playlist"}>
-            <ListMusic className={`mr-4`} />
-          </Section>
-          <Section name={"Playlist"}>
-            <ListMusic className={`mr-4`} />
-          </Section>
-          <Section name={"Playlist"}>
-            <ListMusic className={`mr-4`} />
-          </Section>
-          <Section name={"Playlist"}>
-            <ListMusic className={`mr-4`} />
-          </Section>
-          <Section name={"Playlist"}>
-            <ListMusic className={`mr-4`} />
-          </Section>
-          <Section name={"Playlist"}>
-            <ListMusic className={`mr-4`} />
-          </Section>
-        </div>
-      </ScrollArea>
+      <div className="flex flex-col">
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+        <Section name={"Playlist"}>
+          <ListMusic className={`mr-4`} />
+        </Section>
+      </div>
     </div>
   );
 };

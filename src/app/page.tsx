@@ -2,61 +2,40 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/Home/Sidebar";
 import HeaderMenu from "@/components/Home/HeaderMenu";
-import Avatar from "@/components/Home/Avatar";
-const ControlCenter = dynamic(() => import("@/components/Home/ControlCenter"), { ssr: false });
-import { Tabs, TabsTrigger, TabsList } from "@/components/ui/tabs";
+
+const ControlCenter = dynamic(() => import("@/components/Home/ControlCenter"), {
+  ssr: false,
+});
+import dynamic from "next/dynamic";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MusicTab from "@/components/Home/MusicTab";
 import PodcastsTab from "@/components/Home/PodcastsTab";
-import dynamic from "next/dynamic";
 
 export default function Home() {
-  useEffect(() => {
-    const handleBeforeUnload = (e: any) => {
-      const confirmationMessage = "Do you really want to reload the page?";
-      e.preventDefault();
-      e.returnValue = confirmationMessage;
-      return confirmationMessage;
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
   return (
-    <div className={`h-screen`}>
-      <div className="flex justify-between border-b">
-        <HeaderMenu />
-        <Avatar />
-      </div>
-      <div className="bg-background" style={{ height: `calc(100vh - 41px)` }}>
-        <div className="grid h-full lg:grid-cols-6">
-          <div className="hidden lg:block">
-            <div className="space-y-4 py-4">
-              <div className="px-3 py-2">
-                <Sidebar />
-              </div>
-            </div>
-          </div>
-          <div className="col-span-5 flex h-full flex-col lg:col-span-5 lg:border-l">
-            <div className="h-full p-4 lg:px-8">
+    <div className="flex h-screen flex-col">
+      <HeaderMenu />
+      <div className="flex-1 dark:bg-black min-h-0">
+        <div className="grid h-full grid-cols-7">
+          <ScrollArea className="mr-1 rounded-2xl p-2 dark:bg-primary xl:block hidden">
+            <Sidebar />
+          </ScrollArea>
+          <ScrollArea className={`xl:col-span-6 col-span-7 ml-1 mr-0 rounded-2xl p-3 dark:bg-primary`}>
+            <div className="m-2">
               <Tabs defaultValue="music">
                 <TabsList>
                   <TabsTrigger value="music">Music</TabsTrigger>
-                  <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
-                  <TabsTrigger disabled={true} value="live">
-                    Live
-                  </TabsTrigger>
+                  <TabsTrigger value="podcast">Podcast</TabsTrigger>
                 </TabsList>
-                <MusicTab />
-                <PodcastsTab />
+                <MusicTab/>
+                <PodcastsTab/>
               </Tabs>
             </div>
-            <ControlCenter />
-          </div>
+          </ScrollArea>
         </div>
       </div>
+      <ControlCenter />
     </div>
   );
 }
