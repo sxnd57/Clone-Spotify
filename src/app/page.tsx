@@ -13,6 +13,8 @@ import MusicTab from "@/components/Home/MusicTab";
 import PodcastsTab from "@/components/Home/PodcastsTab";
 
 export default function Home() {
+
+
   return (
     <div className="flex h-screen flex-col">
       <HeaderMenu />
@@ -29,7 +31,7 @@ export default function Home() {
                   <TabsTrigger value="podcasts">Podcast</TabsTrigger>
                 </TabsList>
                 <MusicTab/>
-                <PodcastsTab/>
+                {/*<PodcastsTab/>*/}
               </Tabs>
             </div>
           </ScrollArea>
