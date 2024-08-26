@@ -26,7 +26,7 @@ export default function Home() {
               <Tabs defaultValue="music">
                 <TabsList>
                   <TabsTrigger value="music">Music</TabsTrigger>
-                  <TabsTrigger value="podcast">Podcast</TabsTrigger>
+                  <TabsTrigger value="podcasts">Podcast</TabsTrigger>
                 </TabsList>
                 <MusicTab/>
                 <PodcastsTab/>

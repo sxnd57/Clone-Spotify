@@ -125,6 +125,21 @@ function useAudioPlayer(songs: any) {
     }
   }
 
+  function playSong(song: { songURL: string }) {
+    audioRef.current.pause();
+    audioRef.current = new Audio(song.songURL);
+    audioRef.current.volume = volume;
+    audioRef.current.currentTime = 0;
+
+    audioRef.current.onloadedmetadata = () => {
+      setDuration(audioRef.current.duration);
+    };
+
+    audioRef.current.play();
+    setPlaying(true);
+  }
+
+
   return {
     playing,
     togglePlayPause,
@@ -139,6 +154,7 @@ function useAudioPlayer(songs: any) {
     currentSongIndex,
     volumeIconState,
     formatTime,
+    playSong
   };
 }
 
