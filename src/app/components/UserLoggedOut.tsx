@@ -2,13 +2,16 @@ import React from "react";
 import Image from "next/image";
 import logoDark from "assets/images/sxnd-dark.png";
 import logoLight from "assets/images/sxnd-light.png";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Bell, House, Menu, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import Avatar from "@/components/Home/Avatar";
-import { ModeToggle } from "@/components/theme-toggle-mode";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import SpotifyWhite from "assets/images/spotify-white.png";
+import SpotifyBlack from "assets/images/spotify-black.png";
+import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
+import ModeSwitch from "@/components/theme-switch-mode";
 
-function HeaderMenu() {
+function UserLoggedOut() {
   return (
     <div className={`flex items-center justify-between p-2 dark:bg-black`}>
       <div className="header-left flex items-center">
@@ -26,12 +29,16 @@ function HeaderMenu() {
           width={48}
           height={48}
         />
-        <div className="mx-3 md:hidden block">
+        <div className="mx-3 block md:hidden">
           <Popover>
             <PopoverTrigger asChild>
               <Menu size={24} />
             </PopoverTrigger>
-            <PopoverContent className="dark:bg-black p-2 border w-full" sideOffset={20} align={"start"}>
+            <PopoverContent
+              className="w-full border p-2 dark:bg-black"
+              sideOffset={20}
+              align={"start"}
+            >
               <div className="search-bar group flex items-center rounded-3xl border border-neutral-500 bg-transparent px-3 transition-all focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-1 dark:bg-primary dark:text-neutral-200">
                 <Search className="m-2" size={20} />
                 <Input
@@ -57,13 +64,20 @@ function HeaderMenu() {
           />
         </div>
       </div>
-      <div className="header-right flex items-center">
-        <ModeToggle />
-        <Bell className={`mx-6`} />
-        <Avatar />
+      <div className="header-right flex items-center space-x-6">
+        <ModeSwitch />
+        <Button onClick={()=>signIn('spotify')} className={`space-x-2 rounded-2xl`} variant={"outline"}>
+          <div className="hidden dark:block">
+            <Image src={SpotifyWhite} alt={"logo"} width={24} height={24} />
+          </div>
+          <div className="block dark:hidden">
+            <Image src={SpotifyBlack} alt={"logo"} width={24} height={24} />
+          </div>
+          <span>Login with Spotify</span>
+        </Button>
       </div>
     </div>
   );
 }
 
-export default HeaderMenu;
+export default UserLoggedOut;

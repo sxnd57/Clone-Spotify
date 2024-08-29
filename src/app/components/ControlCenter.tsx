@@ -1,13 +1,10 @@
-import { ChevronUp, Pause, Play, SkipBack, SkipForward } from "lucide-react";
+"use client"
+import { Pause, Play, SkipBack, SkipForward } from "lucide-react";
 import React, { useEffect } from "react";
-import Seekbar from "@/components/Home/Seekbar";
-import songs from "@/components/Home/songs.json";
-import { Button } from "../ui/button";
-import SongCard from "@/components/Home/SongCard";
+import Seekbar from "@/app/components/Seekbar";
+import songs from "@/app/songs.json";
+import { Button } from "../../components/ui/button";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
-import { ModeToggle } from "@/components/theme-toggle-mode";
-import ModeSwitch from "@/components/theme-switch-mode";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 function ControlCenter() {
@@ -26,6 +23,7 @@ function ControlCenter() {
     volumeIconState,
     formatTime,
   } = useAudioPlayer(songs);
+
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

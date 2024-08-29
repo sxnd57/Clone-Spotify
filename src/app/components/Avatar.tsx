@@ -11,9 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import avatar from "assets/images/avatar.jpg";
+import { signOut } from "next-auth/react";
 
-export default function Avatar() {
+export default function Avatar({avatar}: {avatar:any}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -47,7 +47,7 @@ export default function Avatar() {
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
+          <button onClick={()=>signOut()}>Log out</button>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

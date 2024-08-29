@@ -10,7 +10,7 @@ import {
   Radio,
   User,
 } from "lucide-react";
-import Section from "@/components/Home/Section";
+import Section from "@/app/components/Section";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Sidebar = () => {
