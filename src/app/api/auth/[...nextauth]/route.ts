@@ -26,35 +26,6 @@ const refreshAccessToken = async (
   }
 };
 
-const jwtCallback: CallbacksOptions["jwt"] = async ({
-  token,
-  user,
-  account,
-}) => {
-  let extendedToken: ExtendedToken;
-
-  //User login the first time
-  if (account && user) {
-    extendedToken = {
-      ...token,
-      user,
-      accessToken: account.access_token as string,
-      refreshToken: account.refresh_token as string,
-      accessTokenExpiresAt: (account.expires_at as number) * 1000,
-    };
-    return extendedToken;
-  }
-
-  //Subsequent request to check auth sessions
-  if (Date.now() + 5000 < (token as ExtendedToken).accessTokenExpiresAt) {
-    console.log("ACCESS TOKEN STILL VALID, RETURNING EXTENDED TOKEN", token);
-    return token;
-  }
-  //Access token has expired, refresh it
-  console.log("ACCESS TOKEN EXPIRED, REFRESHING....");
-  return await refreshAccessToken(token as ExtendedToken);
-};
-
 
 const handler = NextAuth({
   providers: [
@@ -70,13 +41,48 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    jwt: jwtCallback,
-    async session({session, token}) {
-      session.accessToken = (token as ExtendedToken).accessToken;
-      session.error = (token as ExtendedToken).error
+    // jwt: jwtCallback,
+    jwt: async function ({
+      token,
+      user,
+      account,
+    }: {
+      token: any;
+      user: any;
+      account: any;
+    }) {
+      let extendedToken: ExtendedToken;
 
-      return session
-    }
+      //User login the first time
+      if (account && user) {
+        extendedToken = {
+          ...token,
+          user,
+          accessToken: account.access_token as string,
+          refreshToken: account.refresh_token as string,
+          accessTokenExpiresAt: (account.expires_at as number) * 1000,
+        };
+        return extendedToken;
+      }
+
+      //Subsequent request to check auth sessions
+      if (Date.now() + 5000 < (token as ExtendedToken).accessTokenExpiresAt) {
+        console.log(
+          "ACCESS TOKEN STILL VALID, RETURNING EXTENDED TOKEN",
+          token,
+        );
+        return token;
+      }
+      //Access token has expired, refresh it
+      console.log("ACCESS TOKEN EXPIRED, REFRESHING....");
+      return await refreshAccessToken(token as ExtendedToken);
+    },
+    session: async function ({ session, token }: { session: any; token: any }) {
+      session.access_token = (token as ExtendedToken).accessToken;
+      session.error = (token as ExtendedToken).error;
+
+      return session;
+    },
   },
 });
 

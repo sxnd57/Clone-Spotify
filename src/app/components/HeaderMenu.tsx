@@ -6,7 +6,6 @@ import UserLoggedOut from "@/app/components/UserLoggedOut";
 
 const HeaderMenu = ()=> {
   const { data: session } = useSession();
-  console.log(session);
   if(session && session.user) {
     return <UserLoggedIn session={session}/>
   }else{
