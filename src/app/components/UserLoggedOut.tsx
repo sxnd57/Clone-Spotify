@@ -10,6 +10,7 @@ import SpotifyBlack from "assets/images/spotify-black.png";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import ModeSwitch from "@/components/theme-switch-mode";
+import { ModeToggle } from "@/components/theme-toggle-mode";
 
 function UserLoggedOut() {
   return (
@@ -32,7 +33,7 @@ function UserLoggedOut() {
         <div className="mx-3 block md:hidden">
           <Popover>
             <PopoverTrigger asChild>
-              <Menu size={24} />
+              <Search size={24} />
             </PopoverTrigger>
             <PopoverContent
               className="w-full border p-2 dark:bg-black"
@@ -65,7 +66,12 @@ function UserLoggedOut() {
         </div>
       </div>
       <div className="header-right flex items-center space-x-6">
-        <ModeSwitch />
+        <div className="md:block hidden">
+          <ModeSwitch />
+        </div>
+        <div className="md:hidden block">
+          <ModeToggle/>
+        </div>
         <Button onClick={()=>signIn('spotify')} className={`space-x-2 rounded-2xl`} variant={"outline"}>
           <div className="hidden dark:block">
             <Image src={SpotifyWhite} alt={"logo"} width={24} height={24} />
