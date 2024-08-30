@@ -13,7 +13,7 @@ import ModeSwitch from "@/components/theme-switch-mode";
 
 function UserLoggedOut() {
   return (
-    <div className={`flex items-center justify-between p-2 dark:bg-black`}>
+    <div className={`flex items-center justify-between px-4 py-2 dark:bg-black shadow`}>
       <div className="header-left flex items-center">
         <Image
           className={`block dark:hidden`}

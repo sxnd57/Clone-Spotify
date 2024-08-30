@@ -2,16 +2,21 @@ import React from "react";
 import Image from "next/image";
 import logoDark from "assets/images/sxnd-dark.png";
 import logoLight from "assets/images/sxnd-light.png";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Bell, House, Menu, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Avatar from "./Avatar";
 import ModeSwitch from "@/components/theme-switch-mode";
 
-
-const UserLoggedIn = ({session}: {session:any})=>{
+const UserLoggedIn = ({ session }: { session: any }) => {
   return (
-    <div className={`flex items-center justify-between p-2 dark:bg-black`}>
+    <div
+      className={`flex items-center justify-between px-4 py-2 shadow dark:bg-black`}
+    >
       <div className="header-left flex items-center">
         <Image
           className={`block dark:hidden`}
@@ -69,6 +74,6 @@ const UserLoggedIn = ({session}: {session:any})=>{
       </div>
     </div>
   );
-}
+};
 
 export default UserLoggedIn;

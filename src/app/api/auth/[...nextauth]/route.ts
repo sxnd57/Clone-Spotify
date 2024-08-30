@@ -26,7 +26,6 @@ const refreshAccessToken = async (
   }
 };
 
-
 const handler = NextAuth({
   providers: [
     SpotifyProvider({
@@ -41,16 +40,7 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    // jwt: jwtCallback,
-    jwt: async function ({
-      token,
-      user,
-      account,
-    }: {
-      token: any;
-      user: any;
-      account: any;
-    }) {
+    jwt: async function ({ token, user, account }) {
       let extendedToken: ExtendedToken;
 
       //User login the first time
@@ -67,18 +57,13 @@ const handler = NextAuth({
 
       //Subsequent request to check auth sessions
       if (Date.now() + 5000 < (token as ExtendedToken).accessTokenExpiresAt) {
-        console.log(
-          "ACCESS TOKEN STILL VALID, RETURNING EXTENDED TOKEN",
-          token,
-        );
         return token;
       }
       //Access token has expired, refresh it
-      console.log("ACCESS TOKEN EXPIRED, REFRESHING....");
       return await refreshAccessToken(token as ExtendedToken);
     },
     session: async function ({ session, token }: { session: any; token: any }) {
-      session.access_token = (token as ExtendedToken).accessToken;
+      session.accessToken = (token as ExtendedToken).accessToken;
       session.error = (token as ExtendedToken).error;
 
       return session;

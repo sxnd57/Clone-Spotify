@@ -1,110 +1,30 @@
+"use client";
 import React from "react";
-import {
-  Album,
-  CirclePlay,
-  LayoutGrid,
-  ListMusic,
-  MicVocal,
-  Music2,
-  Podcast,
-  Radio,
-  User,
-} from "lucide-react";
-import Section from "@/app/components/Section";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import PlaylistCard from "@/app/components/PlaylistCard";
+import { usePlaylistContext } from "@/contexts/PlaylistContext";
 
 const Sidebar = () => {
+  const {
+    playlistContextState: { playlists },
+  } = usePlaylistContext();
   return (
-    <div className="">
-      <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-        Discover
-      </h2>
-      <Section name={"Listen now"}>
-        <CirclePlay className={`mr-4`} />
-      </Section>
-      <Section name={"Browser"}>
-        <LayoutGrid className={`mr-4`} />
-      </Section>
-      <Section name={"Radio"}>
-        <Radio className={`mr-4`} />
-      </Section>
-      <Section name={"Podcast"}>
-        <Podcast className={`mr-4`} />
-      </Section>
-
-      <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-        Library
-      </h2>
-      <Section name={"Playlist"}>
-        <ListMusic className={`mr-4`} />
-      </Section>
-      <Section name={"Songs"}>
-        <Music2 className={`mr-4`} />
-      </Section>
-      <Section name={"Made for you"}>
-        <User className={`mr-4`} />
-      </Section>
-      <Section name={"Artists"}>
-        <MicVocal className={`mr-4`} />
-      </Section>
-      <Section name={"Albums"}>
-        <Album className={`mr-4`} />
-      </Section>
+    <div className="py-4">
       <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
         Playlists
       </h2>
       <div className="flex flex-col">
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
-        <Section name={"Playlist"}>
-          <ListMusic className={`mr-4`} />
-        </Section>
+        {playlists.map(({ id, name, images, owner, ...item }) => {
+          return (
+            <PlaylistCard
+              key={id}
+              imageUrl={images[0].url}
+              title={name}
+              subtitle={owner.display_name}
+              width={images[0].width}
+              height={images[0].height}
+            />
+          );
+        })}
       </div>
     </div>
   );
