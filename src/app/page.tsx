@@ -6,9 +6,7 @@ const ControlCenter = dynamic(() => import("@/app/components/ControlCenter"), {
 });
 import dynamic from "next/dynamic";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import MusicTab from "@/app/components/MusicTab";
-import PodcastsTab from "@/app/components/PodcastsTab";
+import PlaylistDetail from "@/app/components/PlaylistDetail";
 import PlaylistContextProvider from "@/contexts/PlaylistContext";
 
 export default function Home() {
@@ -25,14 +23,7 @@ export default function Home() {
               className={`col-span-12 ml-1 mr-0 rounded-2xl shadow dark:bg-primary xl:col-span-10`}
             >
               <div className="m-2">
-                <Tabs defaultValue="music">
-                  <TabsList>
-                    <TabsTrigger value="music">Music</TabsTrigger>
-                    <TabsTrigger value="podcasts">Podcast</TabsTrigger>
-                  </TabsList>
-                  <MusicTab />
-                  <PodcastsTab />
-                </Tabs>
+                <PlaylistDetail/>
               </div>
             </ScrollArea>
           </div>

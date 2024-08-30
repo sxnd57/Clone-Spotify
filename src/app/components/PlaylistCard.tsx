@@ -6,11 +6,22 @@ interface Props {
   height?: number;
   title: string;
   subtitle: string;
+  onClick?: () => Promise<void>;
 }
 
-const PlaylistCard = ({ imageUrl, title, subtitle, width, height }: Props) => {
+const PlaylistCard = ({
+  imageUrl,
+  title,
+  subtitle,
+  width,
+  height,
+  onClick,
+}: Props) => {
   return (
-    <div className="flex cursor-pointer px-4 py-2 hover:bg-neutral-200 dark:hover:bg-neutral-700">
+    <div
+      className="flex cursor-pointer px-4 py-2 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+      onClick={onClick}
+    >
       <Image
         className={`mr-2 h-[48px] w-[48px] rounded-xl border`}
         src={imageUrl}
