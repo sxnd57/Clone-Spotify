@@ -39,6 +39,7 @@ const handler = NextAuth({
       },
     }),
   ],
+  secret: process.env.SECRET as string,
   callbacks: {
     jwt: async function ({ token, user, account }) {
       let extendedToken: ExtendedToken;
