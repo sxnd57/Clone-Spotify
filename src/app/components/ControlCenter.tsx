@@ -43,23 +43,23 @@ function ControlCenter() {
   return (
     <div className="grid grid-cols-8 justify-between px-4 dark:bg-black">
       <div className="col-span-2 mt-auto hidden md:block">
-        <div
-          className={
-            "flex rounded-2xl px-4 py-2 dark:bg-background space-x-2"
-          }
-        >
-          <Image
-            className={`rounded-2xl`}
-            width={64}
-            height={64}
-            src={songs[currentSongIndex].thumbnail}
-            alt=""
-          />
-          <div className="invisible truncate lg:visible">
-            <div className="font-bold">{songs[currentSongIndex].name}</div>
-            <div className="subtitle">{songs[currentSongIndex].artist}</div>
-          </div>
-        </div>
+        {/*<div*/}
+        {/*  className={*/}
+        {/*    "flex rounded-2xl px-4 py-2 dark:bg-background space-x-2"*/}
+        {/*  }*/}
+        {/*>*/}
+        {/*  <Image*/}
+        {/*    className={`rounded-2xl`}*/}
+        {/*    width={64}*/}
+        {/*    height={64}*/}
+        {/*    src={songs[currentSongIndex].thumbnail}*/}
+        {/*    alt=""*/}
+        {/*  />*/}
+        {/*  <div className="invisible truncate lg:visible">*/}
+        {/*    <div className="font-bold">{songs[currentSongIndex].name}</div>*/}
+        {/*    <div className="subtitle">{songs[currentSongIndex].artist}</div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
       <div className="col-span-8 md:col-span-4">
         <div className={`flex flex-col items-center py-2`}>

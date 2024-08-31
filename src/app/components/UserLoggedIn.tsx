@@ -35,7 +35,7 @@ const UserLoggedIn = ({ session }: { session: any }) => {
         <div className="mx-3 block md:hidden">
           <Popover>
             <PopoverTrigger asChild>
-              <Menu size={24} />
+              <Search size={24} />
             </PopoverTrigger>
             <PopoverContent
               className="w-full border p-2 dark:bg-black"

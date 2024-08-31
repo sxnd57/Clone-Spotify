@@ -22,7 +22,7 @@ export default function Home() {
             <ScrollArea
               className={`col-span-12 ml-1 mr-0 rounded-2xl shadow dark:bg-primary xl:col-span-10`}
             >
-              <div className="m-2">
+              <div className="">
                 <PlaylistDetail/>
               </div>
             </ScrollArea>
