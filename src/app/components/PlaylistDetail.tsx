@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { Clock, List, Play } from "lucide-react";
@@ -149,7 +149,7 @@ const PlaylistDetail = () => {
                         className={
                           "hidden h-[40px] w-[40px] rounded object-cover md:block"
                         }
-                        src={item.track?.album.images[0].url}
+                        src={item.track?.album.images[0].url as string}
                         alt={"anh"}
                         width={1980}
                         height={1080}
