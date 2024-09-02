@@ -1,19 +1,22 @@
 "use client";
 import { Pause, Play, SkipBack, SkipForward } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Seekbar from "@/app/components/Seekbar";
 import { Button } from "../../components/ui/button";
 import { spotifyApi } from "@/config/spotify";
 import { useSongContext } from "@/contexts/SongContext";
 import { SongReducerActionType } from "@/types";
+import Image from "next/image";
 
 function ControlCenter() {
   const {
     dispatchSongAction,
-    songContextState: { isPlaying },
+    songContextState: { isPlaying, selectedSong },
   } = useSongContext();
+
   const handlePlayPause = async () => {
     const response = await spotifyApi.getMyCurrentPlaybackState();
+
     if (!response.body) return;
 
     if (response.body.is_playing) {
@@ -33,23 +36,25 @@ function ControlCenter() {
   return (
     <div className="grid grid-cols-8 justify-between px-4 dark:bg-black">
       <div className="col-span-2 mt-auto hidden md:block">
-        {/*<div*/}
-        {/*  className={*/}
-        {/*    "flex rounded-2xl px-4 py-2 dark:bg-background space-x-2"*/}
-        {/*  }*/}
-        {/*>*/}
-        {/*  <Image*/}
-        {/*    className={`rounded-2xl`}*/}
-        {/*    width={64}*/}
-        {/*    height={64}*/}
-        {/*    src={songs[currentSongIndex].thumbnail}*/}
-        {/*    alt=""*/}
-        {/*  />*/}
-        {/*  <div className="invisible truncate lg:visible">*/}
-        {/*    <div className="font-bold">{songs[currentSongIndex].name}</div>*/}
-        {/*    <div className="subtitle">{songs[currentSongIndex].artist}</div>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+        {selectedSong && (
+          <div
+            className={
+              "flex space-x-2 rounded-2xl px-4 py-2 dark:bg-background"
+            }
+          >
+            <Image
+              className={`rounded-2xl`}
+              width={64}
+              height={64}
+              src={selectedSong.album.images[0].url}
+              alt={selectedSong.name}
+            />
+            <div className="invisible truncate lg:visible">
+              <div className="font-bold">{selectedSong.name}</div>
+              <div className="subtitle">{selectedSong.name}</div>
+            </div>
+          </div>
+        )}
       </div>
       <div className="col-span-8 md:col-span-4">
         <div className={`flex flex-col items-center py-2`}>
