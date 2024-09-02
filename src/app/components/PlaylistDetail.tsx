@@ -1,5 +1,5 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { Clock, List, Play } from "lucide-react";
@@ -15,7 +15,6 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -25,20 +24,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { usePlaylistContext } from "@/contexts/PlaylistContext";
-
-const dateFormat = (date: Date) => {
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-
-  return `${day}/${month}/${year}`;
-};
-
-const ms2M = (ms: number | any) => {
-  const min = Math.floor((ms / 1000 / 60) << 0);
-  const sec = Math.floor((ms / 1000) % 60);
-  return min + ":" + sec;
-};
+import { durationConverter } from "@/utils/durationConverter";
+import {dateFormat} from '@/utils/dateFormat'
 
 const PlaylistDetail = () => {
   const [position, setPosition] = useState("grid");
@@ -49,8 +36,6 @@ const PlaylistDetail = () => {
   if (!selectedPlaylist) {
     return null;
   }
-
-  console.log(selectedPlaylist);
 
   return (
     <div className={`min-h-screen`}>
@@ -129,7 +114,7 @@ const PlaylistDetail = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">#</TableHead>
+              <TableHead className="w-[100px] text-center">#</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Album</TableHead>
               <TableHead className="text-right">Date release</TableHead>
@@ -141,8 +126,11 @@ const PlaylistDetail = () => {
           <TableBody>
             {selectedPlaylist.tracks.items.map((item, index) => {
               return (
-                <TableRow key={index}>
-                  <TableCell className="font-medium">{index + 1}</TableCell>
+                <TableRow key={index} className={`group`}>
+                  <TableCell className="font-medium flex items-center justify-center">
+                    <span className={`block group-hover:hidden`}>{index + 1}</span>
+                    <button className={`bg-primary text-white p-2 rounded-full hidden group-hover:block`}><Play size={18}/></button>
+                  </TableCell>
                   <TableCell>
                     <div className="flex items-center space-x-4">
                       <Image
@@ -172,7 +160,7 @@ const PlaylistDetail = () => {
                     {dateFormat(new Date(item.added_at))}
                   </TableCell>
                   <TableCell className="text-right">
-                    {ms2M(item.track?.duration_ms)}
+                    {durationConverter(item.track?.duration_ms)}
                   </TableCell>
                 </TableRow>
               );

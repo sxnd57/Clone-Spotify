@@ -1,6 +1,7 @@
 import { JWT } from "next-auth/jwt";
 import { Session, User } from "next-auth";
 import SinglePlaylistResponse = SpotifyApi.SinglePlaylistResponse;
+import { Dispatch } from "react";
 
 export enum TokenError {
   RefreshAccessTokenError = "RefreshAccessTokenError",
@@ -32,3 +33,31 @@ export interface IPlaylistContext {
     updateObj: Partial<PlaylistContextState>,
   ) => void;
 }
+
+export interface SongContextState {
+  selectedSongId?: string;
+  selectedSong: any | null;
+  isPlaying: boolean;
+  volume: number;
+  deviceId: string | null;
+}
+
+export interface ISongContext {
+  songContextState: SongContextState;
+  dispatchSongAction: Dispatch<SongReducerAction>;
+}
+
+export enum SongReducerActionType {
+  SetDevice = "SetDevice",
+  ToggleIsPlaying = "ToggleIsPlaying",
+}
+
+export type SongReducerAction =
+  | {
+      type: SongReducerActionType.SetDevice;
+      payload: Pick<SongContextState, "deviceId" | "volume">;
+    }
+  | {
+      type: SongReducerActionType.ToggleIsPlaying;
+      payload: boolean;
+    };

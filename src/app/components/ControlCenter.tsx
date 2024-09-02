@@ -1,45 +1,35 @@
-"use client"
+"use client";
 import { Pause, Play, SkipBack, SkipForward } from "lucide-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Seekbar from "@/app/components/Seekbar";
-import songs from "@/app/songs.json";
 import { Button } from "../../components/ui/button";
-import useAudioPlayer from "@/hooks/useAudioPlayer";
-import Image from "next/image";
+import { spotifyApi } from "@/config/spotify";
+import { useSongContext } from "@/contexts/SongContext";
+import { SongReducerActionType } from "@/types";
 
 function ControlCenter() {
   const {
-    playing,
-    togglePlayPause,
-    skipBack,
-    skipForward,
-    volume,
-    currentTime,
-    duration,
-    progress,
-    updateSeekTime,
-    updateVolume,
-    currentSongIndex,
-    volumeIconState,
-    formatTime,
-  } = useAudioPlayer(songs);
+    dispatchSongAction,
+    songContextState: { isPlaying },
+  } = useSongContext();
+  const handlePlayPause = async () => {
+    const response = await spotifyApi.getMyCurrentPlaybackState();
+    if (!response.body) return;
 
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.code === "Space") {
-        event.preventDefault();
-        togglePlayPause();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [togglePlayPause]);
-
+    if (response.body.is_playing) {
+      await spotifyApi.pause();
+      dispatchSongAction({
+        type: SongReducerActionType.ToggleIsPlaying,
+        payload: false,
+      });
+    } else {
+      await spotifyApi.play();
+      dispatchSongAction({
+        type: SongReducerActionType.ToggleIsPlaying,
+        payload: true,
+      });
+    }
+  };
   return (
     <div className="grid grid-cols-8 justify-between px-4 dark:bg-black">
       <div className="col-span-2 mt-auto hidden md:block">
@@ -66,7 +56,6 @@ function ControlCenter() {
           <div className="mb-3 mt-2 flex items-center justify-end space-x-5">
             <Button
               className={`border-0 bg-transparent text-black shadow-none hover:bg-transparent`}
-              onClick={skipBack}
             >
               <SkipBack
                 className={`dark:text-white`}
@@ -74,19 +63,25 @@ function ControlCenter() {
                 size={20}
               />
             </Button>
-            <Button
-              className={`rounded-full border px-2 py-4`}
-              onClick={togglePlayPause}
-            >
-              {playing ? (
-                <Pause className={`fill-white`} strokeWidth={3} size={20} />
+            <Button className={`rounded-full border px-2 py-4`}>
+              {isPlaying ? (
+                <Pause
+                  className={`fill-white`}
+                  strokeWidth={3}
+                  size={20}
+                  onClick={handlePlayPause}
+                />
               ) : (
-                <Play className={`fill-white`} strokeWidth={2} size={20} />
+                <Play
+                  className={`fill-white`}
+                  strokeWidth={2}
+                  size={20}
+                  onClick={handlePlayPause}
+                />
               )}
             </Button>
             <Button
               className={`border-0 bg-transparent text-black shadow-none hover:bg-transparent`}
-              onClick={skipForward}
             >
               <SkipForward
                 className={`dark:text-white`}
@@ -96,28 +91,14 @@ function ControlCenter() {
             </Button>
           </div>
           <div className="flex w-full justify-center space-x-4">
-            <span>{formatTime(currentTime)}</span>
-            <Seekbar
-              onValueChange={(vals) => {
-                updateSeekTime(vals);
-              }}
-              defaultValue={[0]}
-              value={[progress]}
-            />
-            <span>{formatTime(duration)}</span>
+            <span>00:00</span>
+            <Seekbar defaultValue={[0]} value={[50]} />
+            <span>00:00</span>
           </div>
         </div>
       </div>
-      <div className="md:flex col-span-2 items-center justify-end space-x-4 hidden">
-        {volumeIconState()}
-        <Seekbar
-          defaultValue={[0.5]}
-          step={0.01}
-          max={1}
-          onValueChange={(vals) => updateVolume(vals)}
-          value={[volume]}
-          className={`w-32`}
-        />
+      <div className="col-span-2 hidden items-center justify-end space-x-4 md:flex">
+        <Seekbar defaultValue={[0.5]} step={0.01} max={1} className={`w-32`} />
       </div>
     </div>
   );
